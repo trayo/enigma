@@ -6,12 +6,16 @@ class EncryptTest < Minitest::Test
 
   def setup
     srand 1234
-    input_path = "test/message.txt"
-    output_path = "test/encrypted.txt"
 
-    File.delete(output_path) if File.exist?(output_path)
+    input_file = "test/test_message.txt"
+    output_file = "test/test_encrypted.txt"
+    message = "wow. such doge"
 
-    @encrypter = Encrypt.new(input_path, output_path)
+    File.delete(output_file) if File.exist?(output_file)
+    File.delete(input_file) if File.exist?(input_file)
+    File.write(input_file, message)
+
+    @encrypter = Encrypt.new(input_file, output_file)
   end
 
   def test_it_has_todays_date
@@ -28,9 +32,9 @@ class EncryptTest < Minitest::Test
 
   def test_it_loads_a_file
     message_text = "wow. such doge"
-    input_path = "test/message.txt"
+    input_file = "test/test_message.txt"
 
-    new_encrypter = Encrypt.new(input_path)
+    new_encrypter = Encrypt.new(input_file)
 
     assert_equal message_text, new_encrypter.unencrypted_message
   end
@@ -47,7 +51,7 @@ class EncryptTest < Minitest::Test
     encrypter.encrypt_message
     encrypter.write_file
 
-    encrypted_output = File.read("./test/encrypted.txt").chomp
+    encrypted_output = File.read("./test/test_encrypted.txt").chomp
     assert_equal expected_output, encrypted_output
   end
 end

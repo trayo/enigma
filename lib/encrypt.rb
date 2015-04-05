@@ -4,10 +4,10 @@ require_relative "printer"
 
 class Encrypt
   attr_reader :unencrypted_message,
+              :encrypted_message,
               :file_output,
               :key,
-              :date,
-              :encrypted_message
+              :date
 
   def initialize(file_input = "message.txt", file_output = "encrypted.txt")
     @unencrypted_message = load_file(file_input)
@@ -23,34 +23,10 @@ class Encrypt
   end
 
   def write_file
-    if File.exist?(file_output)
-      Printer.file_already_exists
-      ask_user_if_they_want_to_overwrite_file
-    else
-      Printer.file_created(file_output, key, date)
-      File.write("./#{file_output}", "#{key}\n#{encrypted_message}")
-    end
+    File.write("./#{file_output}", "#{key}\n#{encrypted_message}")
   end
 
   private
-
-  def ask_user_if_they_want_to_overwrite_file
-    get_user_input
-
-    while !overwrite? || !cancel?
-      if overwrite?
-        Printer.file_created(file_output, key, date)
-        File.write("./#{file_output}", "#{key}\n#{encrypted_message}")
-        exit
-      elsif cancel?
-        Printer.exit_message
-        exit
-      else
-        Printer.invalid_input
-        get_user_input
-      end
-    end
-  end
 
   def load_file(file_path)
     File.read("./#{file_path}").chomp
@@ -62,18 +38,6 @@ class Encrypt
 
   def generate_date
     Date.today.strftime("%d%m%y")
-  end
-
-  def get_user_input
-    @input = $stdin.gets.downcase.chomp
-  end
-
-  def overwrite?
-    @input == "o" || @input == "overwrite"
-  end
-
-  def cancel?
-    @input == "c" || @input == "cancel"
   end
 end
 
