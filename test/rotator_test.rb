@@ -63,6 +63,13 @@ class RotatorTest < Minitest::Test
     assert_equal "d", Rotator.rotate_character("m", rotation, offset)
   end
 
+  def test_it_can_reverse_rotate_with_the_largest_numbers
+    rotation = -99
+    offset = -9
+
+    assert_equal "m", Rotator.rotate_character("d", rotation, offset)
+  end
+
   def test_it_can_rotate_a_character_given_a_key_and_date
     key = "99999"
     date = "020315"
