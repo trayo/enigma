@@ -2,3 +2,5 @@
 
 .DS_STORE
 coverage
+/message.txt
+/encrypted.txt
