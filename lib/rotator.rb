@@ -38,12 +38,12 @@ class Rotator
 
   def make_rotations_and_offsets
     @rotations = make_rotations
-    @offsets = make_offsets
+    @offsets   = make_offsets
   end
 
   def make_reverse_rotations_and_offsets
     @rotations = make_rotations.map { |n| -n }
-    @offsets = make_offsets.map { |n| -n }
+    @offsets   = make_offsets.map { |n| -n }
   end
 
   def make_rotations
@@ -54,3 +54,4 @@ class Rotator
     (date.to_i ** 2).to_s.chars.pop(4).map(&:to_i)
   end
 end
+

@@ -50,12 +50,6 @@ class RotatorTest < Minitest::Test
     assert_equal "a", Rotator.rotate_character("k", rotation, offset)
   end
 
-  def test_it_can_rotate_special_characters
-    assert_equal "h", Rotator.rotate_character(" ", 9, 1)
-    assert_equal "i", Rotator.rotate_character(".", 9, 1)
-    assert_equal "j", Rotator.rotate_character(",", 9, 1)
-  end
-
   def test_it_can_rotate_with_the_largest_numbers
     rotation = 99
     offset = 9
@@ -99,3 +93,4 @@ class RotatorTest < Minitest::Test
     assert_equal "wow. such doge", rotator.rotate_phrase("auryoyp2yd.bxk")
   end
 end
+
