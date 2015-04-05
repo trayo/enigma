@@ -43,6 +43,13 @@ class RotatorTest < Minitest::Test
     assert_equal "k", Rotator.rotate_character("a", rotation, offset)
   end
 
+  def test_it_can_reverse_rotate_a_single_character
+    rotation = -9
+    offset = -1
+
+    assert_equal "a", Rotator.rotate_character("k", rotation, offset)
+  end
+
   def test_it_can_rotate_special_characters
     assert_equal "h", Rotator.rotate_character(" ", 9, 1)
     assert_equal "i", Rotator.rotate_character(".", 9, 1)
@@ -76,4 +83,12 @@ class RotatorTest < Minitest::Test
     assert_equal "auryoyp2yd.bxk", rotator.rotate_phrase("wow. such doge")
   end
 
+  def test_it_reverse_rotates_a_phrase
+    key = "54321"
+    date = "040415"
+
+    rotator = Rotator.new(key, date, {decrypt: true})
+
+    assert_equal "wow. such doge", rotator.rotate_phrase("auryoyp2yd.bxk")
+  end
 end

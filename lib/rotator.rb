@@ -9,18 +9,13 @@ class Rotator
     new.map
   end
 
-  def initialize(key = "00000", date = "000000")
+  def initialize(key = "00000", date = "000000", mode = {})
     @key, @date = key, date
-    @rotations = make_rotations
-    @offsets = make_offsets
-  end
-
-  def map
-    [("a".."z").to_a, ("0".."9").to_a, " ", ".", ","].flatten
-  end
-
-  def rotate_character(char, rotation, offset)
-    map.rotate(rotation + offset + map.index(char)).first
+    if mode[:decrypt]
+      make_reverse_rotations_and_offsets
+    else
+      make_rotations_and_offsets
+    end
   end
 
   def rotate_phrase(string)
@@ -29,6 +24,26 @@ class Rotator
       i >= 3 ? i = 0 : i += 1
       rotate_character(char, rotations[i], offsets[i])
     end.join
+  end
+
+  def rotate_character(char, rotation, offset)
+    map.rotate(rotation + offset + map.index(char)).first
+  end
+
+  def map
+    [("a".."z").to_a, ("0".."9").to_a, " ", ".", ","].flatten
+  end
+
+  private
+
+  def make_rotations_and_offsets
+    @rotations = make_rotations
+    @offsets = make_offsets
+  end
+
+  def make_reverse_rotations_and_offsets
+    @rotations = make_rotations.map { |n| -n }
+    @offsets = make_offsets.map { |n| -n }
   end
 
   def make_rotations
