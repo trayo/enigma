@@ -42,7 +42,7 @@ class EncryptTest < Minitest::Test
   end
 
   def test_it_writes_the_encrypted_text_to_a_file
-    expected_output = "p3cd37ahamwt,t"
+    expected_output = "69178\np3cd37ahamwt,t"
 
     encrypter.encrypt_message
     encrypter.write_file
