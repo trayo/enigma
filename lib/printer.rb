@@ -23,10 +23,4 @@ class Printer
     print "Invalid input. Please try again:\n"
     print "> "
   end
-
-  def self.print(message)
-    $stdout.print(message)
-  end
-
-  private_class_method :print
 end
