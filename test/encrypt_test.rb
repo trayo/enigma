@@ -7,8 +7,8 @@ class EncryptTest < Minitest::Test
   def setup
     srand 1234
 
-    @input_file = "test/test_message.txt"
-    @output_file = "test/test_encrypted.txt"
+    @input_file = "messages/test_message.txt"
+    @output_file = "messages/test_encrypted.txt"
     message = "wow. such doge"
 
     File.delete(output_file) if File.exist?(output_file)
@@ -30,7 +30,7 @@ class EncryptTest < Minitest::Test
     encrypter.encrypt
     encrypter.write_file
 
-    encrypted_output = File.read("./test/test_encrypted.txt").chomp
+    encrypted_output = File.read(output_file).chomp
     assert_equal expected_output, encrypted_output
   end
 

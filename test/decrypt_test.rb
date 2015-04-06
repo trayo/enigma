@@ -7,8 +7,8 @@ class DecryptTest < Minitest::Test
   def setup
     srand 1234
 
-    @input_file = "test/test_encrypted.txt"
-    @output_file = "test/test_decrypted.txt"
+    @input_file = "messages/test_encrypted.txt"
+    @output_file = "messages/test_decrypted.txt"
     message = "b4ajt4r96irm7ps"
     key = "98765"
     date = "040415"
@@ -32,7 +32,7 @@ class DecryptTest < Minitest::Test
     decrypter.decrypt
     decrypter.write_file
 
-    decrypted_output = File.read("./test/test_decrypted.txt").chomp
+    decrypted_output = File.read(output_file).chomp
     assert_equal expected_message, decrypted_output
   end
 
