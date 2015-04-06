@@ -4,6 +4,7 @@ require_relative "printer"
 class Decrypt < BaseEncryptor
   def initialize(file_input, file_output, key, date)
     raise "Invalid key or date" if not_valid_key(key) || not_valid_date(date)
+
     super(file_input, file_output)
     @rotator = Rotator.new(key, date, decrypt: true)
   end

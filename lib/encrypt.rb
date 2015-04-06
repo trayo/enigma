@@ -4,7 +4,6 @@ require_relative "printer"
 class Encrypt < BaseEncryptor
   def initialize(file_input, file_output)
     super(file_input, file_output)
-
     @rotator = Rotator.new(key, date)
   end
 
