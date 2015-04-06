@@ -17,10 +17,15 @@ class BaseEncryptorTest < Minitest::Test
   def test_it_loads_a_file
     message_text = "wow. such doge"
     input_file = "test/test_message.txt"
+    File.write(input_file, message_text)
 
     encrypter = BaseEncryptor.new(input_file)
 
     assert_equal message_text, encrypter.input_text
+  end
+
+  def teardown
+    File.delete("test/test_message.txt") if File.exist?("test/test_message.txt")
   end
 end
 

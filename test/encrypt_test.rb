@@ -18,11 +18,6 @@ class EncryptTest < Minitest::Test
     @encrypter = Encrypt.new(input_file, output_file)
   end
 
-  def teardown
-    File.delete(output_file) if File.exist?(output_file)
-    File.delete(input_file) if File.exist?(input_file)
-  end
-
   def test_it_encrypts_text_from_a_file
     expected_encryption = "p3cd37ahamwt,t"
 
@@ -37,6 +32,11 @@ class EncryptTest < Minitest::Test
 
     encrypted_output = File.read("./test/test_encrypted.txt").chomp
     assert_equal expected_output, encrypted_output
+  end
+
+  def teardown
+    File.delete(output_file) if File.exist?(output_file)
+    File.delete(input_file) if File.exist?(input_file)
   end
 end
 

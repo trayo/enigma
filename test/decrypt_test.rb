@@ -20,11 +20,6 @@ class DecryptTest < Minitest::Test
     @decrypter = Decrypt.new(input_file, output_file, key, date)
   end
 
-  def teardown
-    File.delete(output_file) if File.exist?(output_file)
-    File.delete(input_file) if File.exist?(input_file)
-  end
-
   def test_it_decrypts_text_from_a_file
     expected_message = "star trek rules"
 
@@ -39,5 +34,10 @@ class DecryptTest < Minitest::Test
 
     decrypted_output = File.read("./test/test_decrypted.txt").chomp
     assert_equal expected_message, decrypted_output
+  end
+
+  def teardown
+    File.delete(output_file) if File.exist?(output_file)
+    File.delete(input_file) if File.exist?(input_file)
   end
 end
