@@ -10,7 +10,10 @@ class Rotator
   end
 
   def initialize(key = "00000", date = "000000", mode = {})
+    raise "Key or date wasn't a string" if key_or_date_not_string(key, date)
+
     @key, @date = key, date
+    @rotations, @offsets = [], []
     if mode[:decrypt]
       make_reverse_rotations_and_offsets
     else
@@ -52,6 +55,10 @@ class Rotator
 
   def make_offsets
     (date.to_i ** 2).to_s.chars.pop(4).map(&:to_i)
+  end
+
+  def key_or_date_not_string(key, date)
+    !key.is_a?(String) || !date.is_a?(String)
   end
 end
 
