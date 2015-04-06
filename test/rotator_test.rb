@@ -88,7 +88,7 @@ class RotatorTest < Minitest::Test
     key = "54321"
     date = "040415"
 
-    rotator = Rotator.new(key, date, {decrypt: true})
+    rotator = Rotator.new(key, date, decrypt: true)
 
     assert_equal "wow. such doge", rotator.rotate_phrase("auryoyp2yd.bxk")
   end
