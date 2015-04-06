@@ -23,13 +23,13 @@ class DecryptTest < Minitest::Test
   def test_it_decrypts_text_from_a_file
     expected_message = "star trek rules"
 
-    assert_equal expected_message, decrypter.decrypt_message
+    assert_equal expected_message, decrypter.decrypt
   end
 
   def test_it_writes_the_decrypted_text_to_a_file
     expected_message = "star trek rules"
 
-    decrypter.decrypt_message
+    decrypter.decrypt
     decrypter.write_file
 
     decrypted_output = File.read("./test/test_decrypted.txt").chomp
