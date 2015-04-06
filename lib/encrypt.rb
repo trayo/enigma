@@ -1,43 +1,14 @@
-require "date"
-require_relative "rotator"
-require_relative "printer"
+require_relative "base_encrypter"
 
-class Encrypt
-  attr_reader :unencrypted_message,
-              :encrypted_message,
-              :file_output,
-              :key,
-              :date
+class Encrypt < BaseEncrypter
+  def initialize(file_input, file_output)
+    super(file_input, file_output)
 
-  def initialize(file_input = "message.txt", file_output = "encrypted.txt")
-    @unencrypted_message = load_file(file_input)
-    @encrypted_message   = ""
-    @file_output         = file_output
-    @key                 = generate_key
-    @date                = generate_date
-    @rotator             = Rotator.new(key, date)
+    @rotator = Rotator.new(key, date)
   end
 
   def encrypt_message
-    @encrypted_message = @rotator.rotate_phrase(unencrypted_message)
-  end
-
-  def write_file
-    File.write("./#{file_output}", "#{key}\n#{encrypted_message}")
-  end
-
-  private
-
-  def load_file(file_path)
-    File.read("./#{file_path}").chomp
-  end
-
-  def generate_key
-    rand(11111..99999).to_s
-  end
-
-  def generate_date
-    Date.today.strftime("%d%m%y")
+    rotate_message
   end
 end
 
@@ -47,5 +18,6 @@ else
   e = Encrypt.new(ARGV[0], ARGV[1])
   e.encrypt_message
   e.write_file
+  Printer.file_created(e.file_output, e.key, e.date)
 end
 
