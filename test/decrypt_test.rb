@@ -2,13 +2,13 @@ require_relative "test_helper"
 require_relative "../lib/decrypt"
 
 class DecryptTest < Minitest::Test
-  attr_reader :decrypter
+  attr_reader :decrypter, :input_file, :output_file
 
   def setup
     srand 1234
 
-    input_file = "test/test_encrypted.txt"
-    output_file = "test/test_decrypted.txt"
+    @input_file = "test/test_encrypted.txt"
+    @output_file = "test/test_decrypted.txt"
     message = "b4ajt4r96irm7ps"
     key = "98765"
     date = "040415"
@@ -18,6 +18,11 @@ class DecryptTest < Minitest::Test
     File.write(input_file, message)
 
     @decrypter = Decrypt.new(input_file, output_file, key, date)
+  end
+
+  def teardown
+    File.delete(output_file) if File.exist?(output_file)
+    File.delete(input_file) if File.exist?(input_file)
   end
 
   def test_it_decrypts_text_from_a_file

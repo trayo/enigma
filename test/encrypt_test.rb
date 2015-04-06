@@ -2,13 +2,13 @@ require_relative "test_helper"
 require_relative "../lib/encrypt"
 
 class EncryptTest < Minitest::Test
-  attr_reader :encrypter
+  attr_reader :encrypter, :input_file, :output_file
 
   def setup
     srand 1234
 
-    input_file = "test/test_message.txt"
-    output_file = "test/test_encrypted.txt"
+    @input_file = "test/test_message.txt"
+    @output_file = "test/test_encrypted.txt"
     message = "wow. such doge"
 
     File.delete(output_file) if File.exist?(output_file)
@@ -16,6 +16,11 @@ class EncryptTest < Minitest::Test
     File.write(input_file, message)
 
     @encrypter = Encrypt.new(input_file, output_file)
+  end
+
+  def teardown
+    File.delete(output_file) if File.exist?(output_file)
+    File.delete(input_file) if File.exist?(input_file)
   end
 
   def test_it_encrypts_text_from_a_file
