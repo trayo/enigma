@@ -64,17 +64,6 @@ class RotatorTest < Minitest::Test
     assert_equal "m", Rotator.rotate_character("d", rotation, offset)
   end
 
-  def test_it_can_rotate_a_character_given_a_key_and_date
-    key = "99999"
-    date = "020315"
-
-    rotator = Rotator.new(key, date)
-
-    assert_equal 99, rotator.rotations.first
-    assert_equal 9, rotator.offsets.first
-    assert_equal "d", rotator.rotate_phrase("m")
-  end
-
   def test_it_rotates_a_phrase
     key = "54321"
     date = "040415"

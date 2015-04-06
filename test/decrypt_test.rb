@@ -41,3 +41,4 @@ class DecryptTest < Minitest::Test
     File.delete(input_file) if File.exist?(input_file)
   end
 end
+
