@@ -9,22 +9,18 @@ class BaseEncryptorTest < Minitest::Test
   end
 
   def test_it_makes_a_key
-    key = /^\d{5}$/
+    five_random_digits = /^\d{5}$/
 
-    assert key.match(BaseEncryptor.new.key), "Key was too long or too short"
+    assert_match five_random_digits, BaseEncryptor.new.key
   end
 
   def test_it_loads_a_file
     message_text = "wow. such doge"
     input_file = "test/test_message.txt"
 
-    new_encrypter = BaseEncryptor.new(input_file)
+    encrypter = BaseEncryptor.new(input_file)
 
-    assert_equal message_text, new_encrypter.input_text
-  end
-
-  def test_it_writes_a_file
-
+    assert_equal message_text, encrypter.input_text
   end
 end
 

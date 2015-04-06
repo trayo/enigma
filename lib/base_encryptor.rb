@@ -21,7 +21,7 @@ class BaseEncryptor
   end
 
   def write_file
-    File.write("./#{file_output}", "#{key}\n#{rotated_text}")
+    File.write("./#{file_output}", @rotated_text)
   end
 
   private
