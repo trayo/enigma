@@ -1,8 +1,8 @@
 class Printer
 
   def self.not_enough_arguments
-    print "Please supply two arguments like:" +
-                 "'$ ruby ./lib/encrypt.rb message.txt encrypted.txt'"
+    print "Please supply two arguments like:\n" +
+          "'$ ruby ./lib/encrypt.rb message.txt encrypted.txt'\n"
   end
 
   def self.file_created(file_output, key, date)
