@@ -2,6 +2,10 @@ require_relative "test_helper"
 require_relative "../lib/base_encryptor"
 
 class BaseEncryptorTest < Minitest::Test
+  def setup
+    File.write("./message.txt", "")
+  end
+
   def test_it_has_todays_date
     date = Date.today.strftime("%d%m%y")
 
@@ -26,6 +30,7 @@ class BaseEncryptorTest < Minitest::Test
 
   def teardown
     File.delete("test/test_message.txt") if File.exist?("test/test_message.txt")
+    File.delete("message.txt") if File.exist?("message.txt")
   end
 end
 
