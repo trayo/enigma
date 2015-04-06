@@ -1,6 +1,5 @@
 require "date"
 require_relative "rotator"
-require_relative "printer"
 
 class BaseEncryptor
   attr_reader :input_text,
