@@ -1,13 +1,13 @@
 class Printer
 
   def self.not_enough_encrypt_arguments
-    print "Please supply two arguments like:\n" +
-          "'$ ruby ./lib/encrypt.rb message.txt encrypted.txt'\n"
+    print "Please supply two arguments like:\n"
+    print "'#{command_line_example}'\n"
   end
 
   def self.not_enough_decrypt_arguments
-    print "Please supply four arguments like:\n" +
-          "'$ ruby ./lib/decrypt.rb encrypted.txt decrypted.txt key date'\n"
+    print "Please supply four arguments like:\n"
+    print "'#{command_line_example}'\n"
   end
 
   def self.file_created(file_output, key, date)
@@ -16,8 +16,9 @@ class Printer
 
   def self.file_already_exists
     print "File already exists.\n"
-    print "Would you like to [c]ancel the operation or [o]verwrite the file?\n"
-    print "> "
+    print "Run with 'force' or '-f':\n"
+    print "'#{command_line_example} force'\n"
+    print "'#{command_line_example} -f'\n"
   end
 
   def self.exit_message
@@ -28,5 +29,11 @@ class Printer
     print "Invalid input. Please try again:\n"
     print "> "
   end
+
+  def self.command_line_example
+    "$ ruby ./lib/decrypt.rb encrypted.txt decrypted.txt key date"
+  end
+
+  private_class_method :command_line_example
 end
 
