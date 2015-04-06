@@ -8,11 +8,12 @@ class BaseEncryptor
               :date,
               :rotated_text
 
-  def initialize(file_input = "message.txt", file_output = "e.txt")
-    @input_text  = load_file(file_input)
-    @file_output = file_output
-    @key         = generate_key
-    @date        = generate_date
+  def initialize(file_input, file_output)
+    @input_text   = load_file(file_input)
+    @file_output  = file_output
+    @key          = generate_key
+    @date         = generate_date
+    @rotated_text = ""
   end
 
   def rotate_message
