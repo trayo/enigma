@@ -21,13 +21,13 @@ class EncryptTest < Minitest::Test
   def test_it_encrypts_text_from_a_file
     expected_encryption = "p3cd37ahamwt,t"
 
-    assert_equal expected_encryption, encrypter.encrypt_message
+    assert_equal expected_encryption, encrypter.encrypt
   end
 
   def test_it_writes_the_encrypted_text_to_a_file
     expected_output = "p3cd37ahamwt,t"
 
-    encrypter.encrypt_message
+    encrypter.encrypt
     encrypter.write_file
 
     encrypted_output = File.read("./test/test_encrypted.txt").chomp

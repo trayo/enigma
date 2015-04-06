@@ -7,17 +7,19 @@ class Encrypt < BaseEncryptor
     @rotator = Rotator.new(key, date)
   end
 
-  def encrypt_message
+  def encrypt
     rotate_message
   end
 end
 
 if ARGV.size < 2
   Printer.not_enough_encrypt_arguments
-else
+elsif File.exist?(ARGV[1]) && ARGV[2] == "force" || ARGV[2] == "-f"
   e = Encrypt.new(ARGV[0], ARGV[1])
-  e.encrypt_message
+  e.encrypt
   e.write_file
   Printer.file_created(e.file_output, e.key, e.date)
+else
+  Printer.file_already_exists
 end
 
