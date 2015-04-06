@@ -1,6 +1,6 @@
-require_relative "base_encrypter"
+require_relative "base_encryptor"
 
-class Encrypt < BaseEncrypter
+class Encrypt < BaseEncryptor
   def initialize(file_input, file_output)
     super(file_input, file_output)
 
