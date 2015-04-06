@@ -1,8 +1,13 @@
 class Printer
 
-  def self.not_enough_arguments
+  def self.not_enough_encrypt_arguments
     print "Please supply two arguments like:\n" +
           "'$ ruby ./lib/encrypt.rb message.txt encrypted.txt'\n"
+  end
+
+  def self.not_enough_decrypt_arguments
+    print "Please supply four arguments like:\n" +
+          "'$ ruby ./lib/decrypt.rb encrypted.txt decrypted.txt key date'\n"
   end
 
   def self.file_created(file_output, key, date)
@@ -24,3 +29,4 @@ class Printer
     print "> "
   end
 end
+

@@ -13,7 +13,7 @@ class Encrypt < BaseEncryptor
 end
 
 if ARGV.size < 2
-  Printer.not_enough_arguments
+  Printer.not_enough_encrypt_arguments
 else
   e = Encrypt.new(ARGV[0], ARGV[1])
   e.encrypt_message
