@@ -1,32 +1,30 @@
-require "rotator"
+require_relative "rotator"
 
 class Cracker
   KNOWN_MESSAGE = "..end.."
 
-  attr_reader :message,
-              :date,
-              :end_message
+  attr_reader :date,
+              :encrypted_message,
+              :cracked_message,
+              :cracked_key
 
   def initialize(file_input, file_output, date)
     @encrypted_message = load_file(file_input)
     @date = date
     @output = file_output
-    @end_message = @encrypted_message.chars.last(7).join
     @cracked_message = ""
     @cracked_key = ""
   end
 
   def crack
-    "11111".upto("99999") do |key|
-      result = Rotator.new(key, date).rotate_phrase(end_message)
+    rotator = Rotator.new("00000", date, decrypt: true)
+    "10000".upto("99999") do |key|
+      rotations = [-key[0..1].to_i, -key[1..2].to_i, -key[2..3].to_i, -key[3..4].to_i]
+      result = rotator.rotate_phrase(encrypted_message, rotations)
 
-      if key == "25641"
-        require "pry"; binding.pry
-      end
-      if result == KNOWN_MESSAGE
+      if result[-7..-1] == KNOWN_MESSAGE
         @cracked_message = result
         @cracked_key = key
-        require "pry"; binding.pry
         break
       end
     end
