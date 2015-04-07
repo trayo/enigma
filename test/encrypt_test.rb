@@ -19,13 +19,13 @@ class EncryptTest < Minitest::Test
   end
 
   def test_it_encrypts_text_from_a_file
-    expected_encryption = "p3cd37ahamwt,t"
+    expected_encryption = "os452w29,bli.i"
 
     assert_equal expected_encryption, encrypter.encrypt
   end
 
   def test_it_writes_the_encrypted_text_to_a_file
-    expected_output = "p3cd37ahamwt,t"
+    expected_output = "os452w29,bli.i"
 
     encrypter.encrypt
     encrypter.write_file
