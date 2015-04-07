@@ -21,7 +21,7 @@ class Rotator
     end
   end
 
-  def rotate_phrase(string)
+  def rotate_phrase(string, rotations = @rotations)
     i = 100
     string.chars.map do |char|
       i >= 3 ? i = 0 : i += 1
