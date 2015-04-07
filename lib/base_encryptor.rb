@@ -11,7 +11,6 @@ class BaseEncryptor
   def initialize(file_input, file_output)
     @input_text   = load_file(file_input)
     @file_output  = file_output
-    @key          = generate_key
     @date         = generate_date
     @rotated_text = ""
   end
@@ -25,10 +24,6 @@ class BaseEncryptor
   end
 
   private
-
-  def generate_key
-    rand(11111..99999).to_s
-  end
 
   def generate_date
     Date.today.strftime("%d%m%y")
