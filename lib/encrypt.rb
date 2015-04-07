@@ -2,23 +2,32 @@ require_relative "base_encryptor"
 require_relative "printer"
 
 class Encrypt < BaseEncryptor
-  def initialize(file_input, file_output)
+  def initialize(file_input, file_output, key = generate_key)
     super(file_input, file_output)
+    @key = key
     @rotator = Rotator.new(key, date)
   end
 
   def encrypt
     rotate_message
   end
+
+  private
+
+  def generate_key
+    rand(10000..99999).to_s
+  end
 end
 
 if ARGV.size < 2
   Printer.not_enough_encrypt_arguments
-elsif !File.exist?(ARGV[1])
+elsif !File.exist?(ARGV[1]) && !ARGV[2]
   e = Encrypt.new(ARGV[0], ARGV[1])
   e.encrypt
   e.write_file
   Printer.file_created(e.file_output, e.key, e.date)
+elsif !File.exist?(ARGV[1])
+
 elsif ARGV[2] == "force" || ARGV[2] == "-f"
   e = Encrypt.new(ARGV[0], ARGV[1])
   e.encrypt
