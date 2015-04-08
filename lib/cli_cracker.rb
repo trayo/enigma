@@ -8,7 +8,7 @@ class CLICraker < CLIBase
 
   def run
     if @arguments.size < 3
-      Printer.not_enough_encrypt_arguments
+      Printer.not_enough_cracker_arguments
     elsif file_doesnt_exist?
       c = Cracker.new(@file_input, @file_output, @date)
       crack_and_write_file(c)

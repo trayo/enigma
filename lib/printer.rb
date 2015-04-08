@@ -2,12 +2,19 @@ class Printer
 
   def self.not_enough_encrypt_arguments
     print "Please supply two arguments like:\n"
-    print "'#{command_line_example}'\n"
+    print "$ ruby ./lib/encrypt.rb message.txt encrypted.txt"
+    print "Or three if you wish to specify a key:\n"
+    print "$ ruby ./lib/encrypt.rb message.txt encrypted.txt key"
   end
 
   def self.not_enough_decrypt_arguments
     print "Please supply four arguments like:\n"
-    print "'#{command_line_example}'\n"
+    print "$ ruby ./lib/decrypt.rb decrypted.txt encrypted.txt key date\n"
+  end
+
+  def self.not_enough_cracker_arguments
+    print "Please supply three arguments like:\n"
+    print "$ ruby ./lib/cracker.rb encrypted.txt cracked.txt date\n"
   end
 
   def self.file_created(file_output, key, date)
