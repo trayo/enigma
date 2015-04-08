@@ -11,7 +11,7 @@ class Cracker
   def initialize(file_input, file_output, date)
     @encrypted_message = load_file(file_input)
     @date = date
-    @output = file_output
+    @file_output = file_output
     @cracked_message = ""
     @cracked_key = ""
     @rotator = Rotator.new("00000", date, decrypt: true)
@@ -23,6 +23,10 @@ class Cracker
       result = @rotator.rotate_phrase(encrypted_message, rotations)
       break if check_results(result, key)
     end
+  end
+
+  def write_file
+    File.write("./#{@file_output}", "#{@cracked_message}\n")
   end
 
   private
