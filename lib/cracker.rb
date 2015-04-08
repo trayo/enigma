@@ -14,23 +14,35 @@ class Cracker
     @output = file_output
     @cracked_message = ""
     @cracked_key = ""
+    @rotator = Rotator.new("00000", date, decrypt: true)
   end
 
   def crack
-    rotator = Rotator.new("00000", date, decrypt: true)
     "10000".upto("99999") do |key|
-      rotations = [-key[0..1].to_i, -key[1..2].to_i, -key[2..3].to_i, -key[3..4].to_i]
-      result = rotator.rotate_phrase(encrypted_message, rotations)
-
-      if result[-7..-1] == KNOWN_MESSAGE
-        @cracked_message = result
-        @cracked_key = key
-        break
-      end
+      rotations = create_rotations(key)
+      result = @rotator.rotate_phrase(encrypted_message, rotations)
+      break if check_results(result, key)
     end
   end
 
   private
+
+  def check_results(result, key)
+    if result[-7..-1] == KNOWN_MESSAGE
+      @cracked_message = result
+      @cracked_key = key
+      true
+    end
+  end
+
+  def create_rotations(key)
+    [
+      -key[0..1].to_i,
+      -key[1..2].to_i,
+      -key[2..3].to_i,
+      -key[3..4].to_i
+    ]
+  end
 
   def load_file(file_path)
     File.read("./#{file_path}").chomp
