@@ -1,4 +1,4 @@
-require_relative "base_cli"
+require_relative "cli_base"
 
 class EncryptCLI < BaseCLI
   def initialize(arguments)
