@@ -1,6 +1,6 @@
 require_relative "printer"
 
-class BaseCLI
+class CLIBase
 
   def initialize(arguments)
     @arguments = arguments

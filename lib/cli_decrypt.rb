@@ -1,6 +1,6 @@
 require_relative "cli_base"
 
-class DecryptCLI
+class CLIDecrypt < CLIBase
   def initialize(arguments)
     super(arguments)
 
@@ -21,10 +21,12 @@ class DecryptCLI
     end
   end
 
+  private
+
   def decrypt_and_write_file(d)
     d.decrypt
     d.write_file
-    Printer.file_created(d.file_output, d.key, d.date)
+    Printer.file_created(d.file_output, @key, d.date)
   end
 end
 

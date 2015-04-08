@@ -1,6 +1,6 @@
 require_relative "cli_base"
 
-class EncryptCLI < BaseCLI
+class CLIEncrypt < CLIBase
   def initialize(arguments)
     super(arguments)
   end
@@ -18,6 +18,8 @@ class EncryptCLI < BaseCLI
       Printer.file_already_exists
     end
   end
+
+  private
 
   def encrypt_and_write_file(e)
     e.encrypt
