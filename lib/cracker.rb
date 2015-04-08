@@ -1,4 +1,5 @@
 require_relative "rotator"
+require_relative "cli_cracker"
 
 class Cracker
   KNOWN_MESSAGE = "..end.."
@@ -6,7 +7,8 @@ class Cracker
   attr_reader :date,
               :encrypted_message,
               :cracked_message,
-              :cracked_key
+              :cracked_key,
+              :file_output
 
   def initialize(file_input, file_output, date)
     @encrypted_message = load_file(file_input)
@@ -53,3 +55,4 @@ class Cracker
   end
 end
 
+CLICraker.new(ARGV).run
