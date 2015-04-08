@@ -24,4 +24,4 @@ class Decrypt < BaseEncryptor
   end
 end
 
-DecryptCLI.new(ARGV).run
+CLIDecrypt.new(ARGV).run

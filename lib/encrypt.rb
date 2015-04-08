@@ -19,5 +19,5 @@ class Encrypt < BaseEncryptor
   end
 end
 
-EncryptCLI.new(ARGV).run
+CLIEncrypt.new(ARGV).run
 
