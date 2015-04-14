@@ -2,12 +2,6 @@ require_relative "test_helper"
 require_relative "../lib/rotator"
 
 class RotatorTest < Minitest::Test
-  def test_it_has_a_character_map
-    expected_map = [("a".."z").to_a, ("0".."9").to_a, " ", ".", ","].flatten
-
-    assert_equal expected_map, Rotator.map
-  end
-
   def test_it_has_a_key_and_date
     key  = "41521"
     date = "020315"

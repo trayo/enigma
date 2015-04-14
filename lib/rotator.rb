@@ -1,12 +1,10 @@
 class Rotator
   attr_reader :key, :date, :rotations, :offsets
 
+  CHARACTER_MAP = [*("a".."z"), *("0".."9"), " ", ".", ","].flatten
+
   def self.rotate_character(char, rotation, offset)
     new.rotate_character(char, rotation, offset)
-  end
-
-  def self.map
-    new.map
   end
 
   def initialize(key = "00000", date = "000000", mode = {})
@@ -30,11 +28,7 @@ class Rotator
   end
 
   def rotate_character(char, rotation, offset)
-    map.rotate(rotation + offset + map.index(char)).first
-  end
-
-  def map
-    [("a".."z").to_a, ("0".."9").to_a, " ", ".", ","].flatten
+    CHARACTER_MAP.rotate(rotation + offset + CHARACTER_MAP.index(char)).first
   end
 
   private
