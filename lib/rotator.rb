@@ -1,7 +1,7 @@
 class Rotator
-  attr_reader :key, :date, :rotations, :offsets
-
   CHARACTER_MAP = [*("a".."z"), *("0".."9"), " ", ".", ","].flatten
+
+  attr_reader :key, :date, :rotations, :offsets
 
   def self.rotate_character(char, rotation, offset)
     new.rotate_character(char, rotation, offset)
