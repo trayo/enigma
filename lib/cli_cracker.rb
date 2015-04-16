@@ -7,14 +7,11 @@ class CLICraker < CLIBase
   end
 
   def run
-    if @arguments.size < 3
-      Printer.not_enough_cracker_arguments
-    elsif file_doesnt_exist?
-      c = Cracker.new(@file_input, @file_output, @date)
-      crack_and_write_file(c)
-    elsif ran_with_force?
-      c = Cracker.new(@file_input, @file_output, @date)
-      crack_and_write_file(c)
+    if file_doesnt_exist? || ran_with_force?
+      c = Cracker.new(file_input, file_output, date)
+      c.crack
+      c.write_file
+      Printer.file_created(c.file_output, c.cracked_key, c.date)
     else
       Printer.file_already_exists
     end
@@ -22,13 +19,8 @@ class CLICraker < CLIBase
 
   private
 
-  def crack_and_write_file(c)
-    c.crack
-    c.write_file
-    Printer.file_created(c.file_output, c.cracked_key, c.date)
-  end
-
   def supplied_a_date?
     @date =~ /^\d{6}$/
   end
 end
+
