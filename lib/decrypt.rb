@@ -24,4 +24,11 @@ class Decrypt < BaseEncryptor
   end
 end
 
-CLIDecrypt.new(ARGV).run
+if ARGV.first.include?("test")
+  print ""
+elsif ARGV.size < 4
+  Printer.not_enough_decrypt_arguments
+else
+  CLIDecrypt.new(ARGV).run
+end
+

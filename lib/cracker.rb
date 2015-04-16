@@ -55,4 +55,11 @@ class Cracker
   end
 end
 
-CLICraker.new(ARGV).run
+if ARGV.first.include?("test")
+  print ""
+elsif ARGV.size < 3
+  Printer.not_enough_cracker_arguments
+else
+  CLICraker.new(ARGV).run
+end
+

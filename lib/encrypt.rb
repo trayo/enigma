@@ -19,5 +19,11 @@ class Encrypt < BaseEncryptor
   end
 end
 
-CLIEncrypt.new(ARGV).run
+if ARGV.first.include?("test")
+  print ""
+elsif ARGV.size < 2
+  Printer.not_enough_encrypt_arguments
+else
+  CLIEncrypt.new(ARGV).run
+end
 
