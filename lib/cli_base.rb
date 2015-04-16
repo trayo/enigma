@@ -1,12 +1,17 @@
 require_relative "printer"
 
 class CLIBase
+  attr_reader :file_input,
+              :file_output,
+              :key,
+              :date,
+              :force_option
 
   def initialize(arguments)
-    @arguments = arguments
     @file_input = arguments[0]
     @file_output = arguments[1]
     @key = arguments[2]
+    @date = arguments[3]
     @force_option = arguments.last
   end
 
