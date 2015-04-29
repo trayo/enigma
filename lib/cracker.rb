@@ -23,7 +23,7 @@ class Cracker
     "10000".upto("99999") do |key|
       rotations = create_rotations(key)
       result = @rotator.rotate_phrase(encrypted_message, rotations)
-      break if check_results(result, key)
+      break if cracked?(result, key)
     end
   end
 
@@ -33,7 +33,7 @@ class Cracker
 
   private
 
-  def check_results(result, key)
+  def cracked?(result, key)
     if result[-7..-1] == KNOWN_MESSAGE
       @cracked_message = result
       @cracked_key = key
